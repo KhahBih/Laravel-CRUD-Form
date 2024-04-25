@@ -4,7 +4,6 @@
         <div class="card">
             <div class="card-header">
                 Trashed post
-                <a href="{{route('posts.create')}}" class="btn btn-success">Create</a>
                 <a href="" class="btn btn-dark">Trashed</a>
             </div>
             <div class="card-body">
@@ -30,13 +29,14 @@
                                 <td>{{$post->category_id}}</td>
                                 <td>{{date('d-m-Y', strtotime($post->created_at))}}</td>
                                 <td>
-                                    <a href="{{route('posts.edit', $post->id)}}" class="btn btn-primary">Edit</a>
-                                    <a href="{{route('posts.show', $post->id)}}" class="btn btn-success">Show</a>
-                                    <form action="{{route('posts.destroy', $post->id)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger">Delete</button>
-                                    </form>
+                                    <div class="d-flex">
+                                        <a href="{{route('posts.restore', $post->id)}}" class="btn btn-success">Restore</a>
+                                        <form action="" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
